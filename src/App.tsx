@@ -1,0 +1,30 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * Generated with the TypeScript template
+ * https://github.com/react-native-community/react-native-template-typescript
+ *
+ * @format
+ */
+
+import React from 'react';
+import { SafeAreaView, StatusBar } from 'react-native';
+import Search from './pages/Search';
+
+const App = () => {
+  return (
+    <>
+      <StatusBar
+        backgroundColor="transparent"
+        barStyle="dark-content"
+        translucent
+      />
+      <SafeAreaView style={{ flex: 1 }}>
+        <Search />
+      </SafeAreaView>
+    </>
+  );
+};
+
+export default App;
