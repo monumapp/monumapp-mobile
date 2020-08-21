@@ -1,21 +1,34 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
-import { Text, View } from 'react-native';
+import {
+  Container,
+  LogoImage,
+  ActionsContainer,
+  SearchInput,
+  QRCodeButton,
+  QRCodeButtonText,
+  InputLabel,
+  Label,
+} from './styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Logo from '../../icons/logo.png';
 
 const Search = () => {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontFamily: 'Montserrat-Bold' }}>Hello World</Text>
-    </View>
+    <Container>
+      <LogoImage source={Logo} />
+
+      <ActionsContainer>
+        <InputLabel>Busque um monumento pelo nome</InputLabel>
+        <SearchInput placeholder="Ex: Theatro da Paz" />
+        <Label>Ou</Label>
+        <InputLabel>Pressione o botão para buscar por QR Code</InputLabel>
+        <QRCodeButton onPress={() => console.log('QR Code')}>
+          <Icon name="qrcode-scan" size={75} />
+          <QRCodeButtonText>QR Code</QRCodeButtonText>
+        </QRCodeButton>
+      </ActionsContainer>
+    </Container>
   );
 };
 
