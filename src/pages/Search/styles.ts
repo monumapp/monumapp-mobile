@@ -21,7 +21,6 @@ export const ActionsContainer = styled.View`
 `;
 
 export const InputLabel = styled.Text`
-  margin-top: 20px;
   color: #ff8616;
   font-family: 'Montserrat-Regular';
   font-size: 20px;
@@ -38,7 +37,7 @@ export const SearchInput = styled.TextInput`
 `;
 
 export const Label = styled.Text`
-  margin-top: 20px;
+  margin: 20px 0;
   color: #5f5f5f;
   font-family: 'Montserrat-Regular';
   font-size: 20px;
@@ -54,8 +53,8 @@ export const QRCodeButton = styled.TouchableOpacity`
   padding: 20px;
   background: #ededed;
   border: 1px solid #828282;
-  box-shadow: 10px 5px 5px black;
   border-radius: 10px;
+  elevation: 5;
 `;
 
 export const QRCodeButtonText = styled.Text`
