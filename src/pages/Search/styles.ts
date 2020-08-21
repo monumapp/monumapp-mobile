@@ -1,17 +1,17 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   padding: ${getStatusBarHeight()}px 20px 20px ${getStatusBarHeight()}px;
   flex: 1;
-  align-items: center;
   background: #eaeaea;
 `;
 
 export const LogoImage = styled.Image`
+  align-self: center;
   width: 150px;
   height: 150px;
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 export const ActionsContainer = styled.View`
