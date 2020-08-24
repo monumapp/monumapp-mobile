@@ -13,7 +13,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Logo from '../../icons/logo.png';
 
-const Search = () => {
+const Search: React.FC = () => {
   return (
     <Container>
       <LogoImage source={Logo} />
