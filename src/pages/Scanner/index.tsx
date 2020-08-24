@@ -1,17 +1,21 @@
 import React, { useCallback } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { TopInstructions, Marker } from './styles';
-import { Dimensions, Linking } from 'react-native';
+import { Dimensions } from 'react-native';
 
 interface QRCodeReadEvent {
   data: string;
 }
 
 const Scanner: React.FC = () => {
-  const onSuccess = useCallback((e: QRCodeReadEvent) => {
-    Linking.openURL(e.data);
-  }, []);
+  const { navigate } = useNavigation();
+  const onSuccess = useCallback(
+    (event: QRCodeReadEvent) => {
+      navigate('Monument', { monumentId: event.data });
+    },
+    [navigate],
+  );
 
   return (
     <QRCodeScanner
