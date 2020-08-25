@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
-import Search from './pages/Search';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './routes';
 
 const App = () => {
   return (
@@ -11,9 +12,11 @@ const App = () => {
         barStyle="dark-content"
         translucent
       />
-      <SafeAreaView style={{ flex: 1 }}>
-        <Search />
-      </SafeAreaView>
+      <NavigationContainer>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Routes />
+        </SafeAreaView>
+      </NavigationContainer>
     </>
   );
 };
