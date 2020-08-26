@@ -1,0 +1,38 @@
+{
+  "monuments": [
+    {
+      "id": "1",
+      "imgs_urls": [
+        "http://theatrodapaz.com.br/assets/img/tp/frontaria_tp.jpg",
+        "http://theatrodapaz.com.br/assets/img/tp/Foyer.jpg",
+        "http://theatrodapaz.com.br/assets/img/tp/visaointernathpaz.jpg"
+      ],
+      "name": "Theatro da Paz",
+      "neighborhood": "Campina",
+      "information": {
+        "description": "That's the monument's description, here will be information  about this monument nowadays.",
+        "open_hours": [
+          {
+            "days": [
+              "Segunda",
+              "Terça",
+              "Quarta",
+              "Quinta",
+              "Sexta"
+            ],
+            "time": {
+              "from": 8,
+              "to": 16
+            }
+          }
+        ],
+        "enter_price": 6.50
+      },
+      "history": {
+        "fundation_date": "18/05/1850",
+        "origin": "A text about this monument origin, and why it was founded",
+        "important_facts": "Monuments important fact's in history"
+      }
+    }
+  ]
+}
