@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Text } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntyPO from 'react-native-vector-icons/Entypo';
 import api from '../../services/api';
@@ -38,8 +38,10 @@ interface Monument {
 const Monument: React.FC = () => {
   const route = useRoute();
   const { monumentId } = route.params as RouteParams;
+  const { navigate } = useNavigation();
   const [monument, setMonument] = useState<Monument>({} as Monument);
   const [showingImage, setShowingImage] = useState('');
+
   useEffect(() => {
     async function load() {
       const response = await api.get(`/monuments/${monumentId}`);
@@ -51,6 +53,10 @@ const Monument: React.FC = () => {
     load();
   }, [monumentId]);
 
+  const backToSearchHandle = useCallback(() => {
+    navigate('Search');
+  }, []);
+
   return (
     <Container>
       <CarrousselContainer>
@@ -58,7 +64,7 @@ const Monument: React.FC = () => {
           <Carroussel
             source={{ uri: showingImage }}
             imageStyle={{ borderBottomRightRadius: 35, borderBottomLeftRadius: 35 }}>
-            <Icon name='arrow-left' size={25} color='#202020' />
+            <Icon name='arrow-left' size={25} color='#202020' onPress={backToSearchHandle} />
           </Carroussel>
         )}
       </CarrousselContainer>
