@@ -2,7 +2,7 @@
   "monuments": [
     {
       "id": "1",
-      "imgs_urls": [
+      "imgsUrls": [
         "http://theatrodapaz.com.br/assets/img/tp/frontaria_tp.jpg",
         "http://theatrodapaz.com.br/assets/img/tp/Foyer.jpg",
         "http://theatrodapaz.com.br/assets/img/tp/visaointernathpaz.jpg"
@@ -11,7 +11,7 @@
       "neighborhood": "Campina",
       "information": {
         "description": "That's the monument's description, here will be information  about this monument nowadays.",
-        "open_hours": [
+        "openHours": [
           {
             "days": [
               "Segunda",
@@ -26,12 +26,12 @@
             }
           }
         ],
-        "enter_price": 6.50
+        "enterPrice": 6.50
       },
       "history": {
-        "fundation_date": "18/05/1850",
+        "fundationDate": "18/05/1850",
         "origin": "A text about this monument origin, and why it was founded",
-        "important_facts": "Monuments important fact's in history"
+        "importantFacts": "Monuments important fact's in history"
       }
     }
   ]

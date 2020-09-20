@@ -21,18 +21,18 @@ interface OpenHours {
 
 interface Monument {
   id: string;
-  imgs_urls: string[];
+  imgsUrls: string[];
   name: string;
   neighborhood: string;
   information: {
     description: string;
-    open_hours: OpenHours[];
-    enter_price: number;
+    openHours: OpenHours[];
+    enterPrice: number;
   };
   history: {
-    fundation_date: string;
+    fundationDate: string;
     origin: string;
-    important_facts: string;
+    importantFacts: string;
   };
 }
 
@@ -47,9 +47,8 @@ const Monument: React.FC = () => {
     async function load() {
       const response = await api.get(`/monuments/${monumentId}`);
       const monumentLoaded = response.data as Monument;
-      console.log(monumentLoaded.information);
       setMonument(monumentLoaded);
-      setShowingImage(monumentLoaded.imgs_urls[0]);
+      setShowingImage(monumentLoaded.imgsUrls[0]);
     }
 
     load();
@@ -62,7 +61,7 @@ const Monument: React.FC = () => {
   return (
     <Container>
       <CarrousselContainer>
-        {monument.imgs_urls && (
+        {monument.imgsUrls && (
           <Carroussel
             source={{ uri: showingImage }}
             imageStyle={{ borderBottomRightRadius: 35, borderBottomLeftRadius: 35 }}>
@@ -76,22 +75,22 @@ const Monument: React.FC = () => {
           <IconEntyPO name='location' size={15} color='#BCBCBC' /><LocationText>{monument.neighborhood}</LocationText>
         </LocationContainer>
       </TitleContainer>
-      {monument &&
+      {monument.information && monument.history &&
         <TabButton data={[
           {
             buttonName: 'Informações',
             buttonContent: [
-              { title: 'Descrição', text: 'monument.information.description' },
-              { title: 'Horário de Funcionamento', text: 'monument.information.open_hours.toString()' },
-              { title: 'Preço de entrada', text: 'monument.information.enter_price.toFixed(2)' }
+              { title: 'Descrição', info: monument.information.description },
+              { title: 'Horário de Funcionamento', info: monument.information.openHours },
+              { title: 'Preço de entrada', info: monument.information.enterPrice.toFixed(2) }
             ]
           },
           {
             buttonName: 'História',
             buttonContent: [
-              { title: 'Data de Fundação', text: 'monument.information.description' },
-              { title: 'Origem', text: 'monument.information.open_hours.toString()' },
-              { title: 'Fatos Históricos', text: 'monument.information.enter_price.toFixed(2)' }
+              { title: 'Data de Fundação', info: monument.history.fundationDate },
+              { title: 'Origem', info: monument.history.origin },
+              { title: 'Fatos Históricos', info: monument.history.importantFacts }
             ]
           }
         ]} />
