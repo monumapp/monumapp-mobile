@@ -13,15 +13,13 @@ interface RouteParams {
 
 interface OpenHours {
   days: string[];
-  time: {
-    from: number;
-    to: number;
-  };
+  open: string;
+  close: string;
 }
 
 interface Monument {
   id: string;
-  imgsUrls: string[];
+  imagesUrls: string[];
   name: string;
   neighborhood: string;
   information: {
@@ -30,7 +28,7 @@ interface Monument {
     enterPrice: number;
   };
   history: {
-    fundationDate: string;
+    foundationDate: string;
     origin: string;
     importantFacts: string;
   };
@@ -48,7 +46,7 @@ const Monument: React.FC = () => {
       const response = await api.get(`/monuments/${monumentId}`);
       const monumentLoaded = response.data as Monument;
       setMonument(monumentLoaded);
-      setShowingImage(monumentLoaded.imgsUrls[0]);
+      setShowingImage(monumentLoaded.imagesUrls[0]);
     }
 
     load();
@@ -61,7 +59,7 @@ const Monument: React.FC = () => {
   return (
     <Container>
       <CarrousselContainer>
-        {monument.imgsUrls && (
+        {monument.imagesUrls && (
           <Carroussel
             source={{ uri: showingImage }}
             imageStyle={{ borderBottomRightRadius: 35, borderBottomLeftRadius: 35 }}>
@@ -88,7 +86,7 @@ const Monument: React.FC = () => {
           {
             buttonName: 'História',
             buttonContent: [
-              { title: 'Data de Fundação', info: monument.history.fundationDate },
+              { title: 'Data de Fundação', info: monument.history.foundationDate },
               { title: 'Origem', info: monument.history.origin },
               { title: 'Fatos Históricos', info: monument.history.importantFacts }
             ]

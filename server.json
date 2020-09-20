@@ -20,16 +20,14 @@
               "Quinta",
               "Sexta"
             ],
-            "time": {
-              "from": 8,
-              "to": 16
-            }
+            "open": "8h",
+            "close": "16h"
           }
         ],
         "enterPrice": 6.50
       },
       "history": {
-        "fundationDate": "18/05/1850",
+        "foundationDate": "18/05/1850",
         "origin": "A text about this monument origin, and why it was founded",
         "importantFacts": "Monuments important fact's in history"
       }

@@ -5,10 +5,8 @@ import { View, Text } from 'react-native';
 
 interface OpenHours {
   days: string[];
-  time: {
-    from: number;
-    to: number;
-  };
+  open: string;
+  close: string;
 }
 
 interface ButtonTabContent {
@@ -53,9 +51,9 @@ const TabButton: React.FC<TabButtonProps> = ({ data }) => {
                     ? <ContentSectionText>{section.info}</ContentSectionText>
                     : <View>
                       {section.info.map(openHour => {
-                        return <View>
+                        return <View key={openHour.days.toString()}>
                           <OpenHoursDays>{openHour.days.join(', ')}</OpenHoursDays>
-                          <OpenHoursTime>Das {openHour.time.from}h às {openHour.time.to}h</OpenHoursTime>
+                          <OpenHoursTime>Das {openHour.open} às {openHour.close}</OpenHoursTime>
                         </View>
                       })}
                     </View>}
