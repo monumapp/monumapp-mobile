@@ -4,7 +4,8 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntyPO from 'react-native-vector-icons/Entypo';
 import api from '../../services/api';
-import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText } from './styles';
+import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText, InfoContainer } from './styles';
+import TabButton from './components/TabButton';
 
 interface RouteParams {
   monumentId: string;
@@ -46,6 +47,7 @@ const Monument: React.FC = () => {
     async function load() {
       const response = await api.get(`/monuments/${monumentId}`);
       const monumentLoaded = response.data as Monument;
+      console.log(monumentLoaded.information);
       setMonument(monumentLoaded);
       setShowingImage(monumentLoaded.imgs_urls[0]);
     }
@@ -74,6 +76,26 @@ const Monument: React.FC = () => {
           <IconEntyPO name='location' size={15} color='#BCBCBC' /><LocationText>{monument.neighborhood}</LocationText>
         </LocationContainer>
       </TitleContainer>
+      {monument &&
+        <TabButton data={[
+          {
+            buttonName: 'Informações',
+            buttonContent: [
+              { title: 'Descrição', text: 'monument.information.description' },
+              { title: 'Horário de Funcionamento', text: 'monument.information.open_hours.toString()' },
+              { title: 'Preço de entrada', text: 'monument.information.enter_price.toFixed(2)' }
+            ]
+          },
+          {
+            buttonName: 'História',
+            buttonContent: [
+              { title: 'Data de Fundação', text: 'monument.information.description' },
+              { title: 'Origem', text: 'monument.information.open_hours.toString()' },
+              { title: 'Fatos Históricos', text: 'monument.information.enter_price.toFixed(2)' }
+            ]
+          }
+        ]} />
+      }
     </Container >
   );
 };

@@ -18,7 +18,6 @@ export const Carroussel = styled.ImageBackground`
 `;
 
 export const TitleContainer = styled.View`
-  height: 100px;
   background: #ffffff;
   padding: 15px 30px;
   border-bottom-left-radius: 35px;
@@ -40,4 +39,8 @@ export const LocationText = styled.Text`
   color: #BCBCBC;
   font-size: 15px;
   margin-left: 5px;
+`;
+
+export const InfoContainer = styled.View`
+  flex: 1
 `;
