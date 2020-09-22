@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import Autocomplete from 'react-native-autocomplete-input';
 
 export const Container = styled.ScrollView`
   padding: ${getStatusBarHeight()}px 20px 20px ${getStatusBarHeight()}px;
@@ -27,13 +28,20 @@ export const InputLabel = styled.Text`
   width: 300px;
 `;
 
-export const SearchInput = styled.TextInput`
-  margin-top: 20px;
+export const SearchInput = styled(Autocomplete)`
   height: 55px;
   width: 300px;
-  border: 1px solid #828282;
-  border-radius: 10px;
   padding: 0 10px;
+`;
+
+export const ListAutoCompleteItem = styled.TouchableOpacity`
+  padding: 20px;
+`;
+
+export const ListAutoCompleteText = styled.Text`
+  color: #5f5f5f;
+  font-family: 'Montserrat-SemiBold';
+  font-size: 15px;
 `;
 
 export const Label = styled.Text`
