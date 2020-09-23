@@ -45,7 +45,7 @@ const TabButton: React.FC<TabButtonProps> = ({ data }) => {
             index === isSelected &&
             button.buttonContent.map(section => {
               return (
-                <ContentSection>
+                <ContentSection key={`section${section.title}`}>
                   <ContentSectionTitle>{section.title}</ContentSectionTitle>
                   {typeof section.info === 'string'
                     ? <ContentSectionText>{section.info}</ContentSectionText>
