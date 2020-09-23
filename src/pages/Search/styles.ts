@@ -35,13 +35,15 @@ export const SearchInput = styled(Autocomplete)`
 `;
 
 export const ListAutoCompleteItem = styled.TouchableOpacity`
-  padding: 20px;
+  height: 60px;
+  justify-content: center;
 `;
 
 export const ListAutoCompleteText = styled.Text`
   color: #5f5f5f;
   font-family: 'Montserrat-SemiBold';
   font-size: 15px;
+  margin: 10px;
 `;
 
 export const Label = styled.Text`

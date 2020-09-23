@@ -3,11 +3,12 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntyPO from 'react-native-vector-icons/Entypo';
 import api from '../../services/api';
-import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText, InfoContainer } from './styles';
+import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText } from './styles';
 import TabButton from './components/TabButton';
 
 interface RouteParams {
-  monumentId: string;
+  monumentId?: string;
+  monument?: Monument;
 }
 
 interface OpenHours {
@@ -35,17 +36,22 @@ interface Monument {
 
 const Monument: React.FC = () => {
   const route = useRoute();
-  const { monumentId } = route.params as RouteParams;
+  const { monumentId, monument: paramMonument } = route.params as RouteParams;
   const { navigate } = useNavigation();
   const [monument, setMonument] = useState<Monument>({} as Monument);
   const [showingImage, setShowingImage] = useState('');
 
   useEffect(() => {
     async function load() {
-      const response = await api.get(`/monuments/${monumentId}`);
-      const monumentLoaded = response.data as Monument;
-      setMonument(monumentLoaded);
-      setShowingImage(monumentLoaded.imagesUrls[0]);
+      if (paramMonument) {
+        setMonument(paramMonument);
+        setShowingImage(paramMonument.imagesUrls[0]);
+      } else {
+        const response = await api.get(`/monuments/${monumentId}`);
+        const monumentLoaded = response.data as Monument;
+        setMonument(monumentLoaded);
+        setShowingImage(monumentLoaded.imagesUrls[0]);
+      }
     }
 
     load();

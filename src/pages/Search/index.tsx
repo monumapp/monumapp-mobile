@@ -15,7 +15,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Logo from '../../icons/logo.png';
 import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity, Text } from 'react-native';
 import api from '../../services/api';
 
 interface OpenHours {
@@ -46,11 +45,11 @@ const Search: React.FC = () => {
   const [selectedMonumentsName, setSelectedMonumentsName] = useState('');
   const [autocompleteOptions, setAutocompleteOptions] = useState<Monument[]>([]);
   const [selectedMonuments, setSelectedMonuments] = useState<Monument>({} as Monument);
+  const navigation = useNavigation();
 
   useEffect(() => {
     async function loadAutoCompleteOptions() {
       const response = await api.get(`/monuments?monumentName=${selectedMonumentsName}`);
-      console.log(response.data);
       setAutocompleteOptions(response.data);
     }
 
@@ -61,6 +60,20 @@ const Search: React.FC = () => {
   const handleAutoCompleteOptions = useCallback((name: string) => {
     setSelectedMonumentsName(name);
   }, []);
+
+  const handleSelectedMonument = useCallback((monument: Monument) => {
+    setSelectedMonuments(monument);
+    setSelectedMonumentsName(monument.name);
+    navigation.navigate('Monument', {
+      monument: monument
+    });
+  }, []);
+
+  const handleSubmitSearch = useCallback(() => {
+    navigation.navigate('Monument', {
+      monument: selectedMonuments
+    });
+  }, [selectedMonuments]);
 
   return (
     <Container>
@@ -83,12 +96,15 @@ const Search: React.FC = () => {
           listContainerStyle={{
             width: 300
           }}
+          onSubmitEditing={handleSubmitSearch}
           placeholder="Ex: Theatro da Paz"
           data={autocompleteOptions}
           defaultValue=''
+          value={selectedMonumentsName}
           onChangeText={(value) => handleAutoCompleteOptions(value)}
-          renderItem={({ item }) => (selectedMonumentsName !== '' &&
-            <ListAutoCompleteItem key={item.id} onPress={() => setSelectedMonuments(item as Monument)}>
+          renderItem={({ item }) => (selectedMonumentsName !== ''
+            && selectedMonumentsName !== item.name
+            && <ListAutoCompleteItem key={item.id} onPress={() => handleSelectedMonument(item as Monument)}>
               <ListAutoCompleteText>
                 {item.name}
               </ListAutoCompleteText>
