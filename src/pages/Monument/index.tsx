@@ -3,8 +3,9 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntyPO from 'react-native-vector-icons/Entypo';
 import api from '../../services/api';
-import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText } from './styles';
+import { Container, Carroussel, TitleContainer, CarrousselContainer, TitleText, LocationContainer, LocationText, ChangeContent, ChangeRightContent, DotIconsImage } from './styles';
 import TabButton from './components/TabButton';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 interface RouteParams {
   monumentId?: string;
@@ -40,6 +41,7 @@ const Monument: React.FC = () => {
   const { navigate } = useNavigation();
   const [monument, setMonument] = useState<Monument>({} as Monument);
   const [showingImage, setShowingImage] = useState('');
+  const [showingImageIndex, setShowingImageIndex] = useState(0);
 
   useEffect(() => {
     async function load() {
@@ -50,26 +52,61 @@ const Monument: React.FC = () => {
         const response = await api.get(`/monuments/${monumentId}`);
         const monumentLoaded = response.data as Monument;
         setMonument(monumentLoaded);
-        setShowingImage(monumentLoaded.imagesUrls[0]);
+        setShowingImage(monumentLoaded.imagesUrls[showingImageIndex]);
       }
     }
 
     load();
   }, [monumentId]);
 
-  const backToSearchHandle = useCallback(() => {
-    navigate('Search');
+  const backToScannerHandle = useCallback(() => {
+    navigate('Scanner', {
+      isCommingBack: true
+    });
   }, []);
+
+  const handleCarrousselRight = useCallback(() => {
+    if (showingImageIndex < monument.imagesUrls.length) {
+      setShowingImageIndex(showingImageIndex + 1);
+      setShowingImage(monument.imagesUrls[showingImageIndex + 1]);
+    }
+  }, [showingImageIndex, monument.imagesUrls]);
+
+  const handleCarrousselLeft = useCallback(() => {
+    if (showingImageIndex > 0) {
+      setShowingImageIndex(showingImageIndex - 1);
+      setShowingImage(monument.imagesUrls[showingImageIndex - 1]);
+    }
+  }, [showingImageIndex, monument.imagesUrls]);
 
   return (
     <Container>
       <CarrousselContainer>
-        {monument.imagesUrls && (
+        {showingImage !== '' && (
           <Carroussel
             source={{ uri: showingImage }}
             imageStyle={{ borderBottomRightRadius: 35, borderBottomLeftRadius: 35 }}>
-            <Icon name='arrow-left' size={25} color='#202020' onPress={backToSearchHandle} />
+            <Icon name='arrow-left' size={25} color='#202020' onPress={backToScannerHandle} />
+            <Swipeable
+              renderRightActions={() => showingImageIndex < monument.imagesUrls.length - 1
+                && <ChangeRightContent>
+                  {/* <Icon name='chevron-right' size={60} color="#FF8616" /> */}
+                </ChangeRightContent>}
+              onSwipeableRightOpen={handleCarrousselRight}
+              renderLeftActions={() => showingImageIndex > 0
+                && <ChangeRightContent>
+                  {/* <Icon name='chevron-left' size={60} color="#FF8616" /> */}
+                </ChangeRightContent>}
+              onSwipeableLeftOpen={handleCarrousselLeft}>
+              <ChangeContent />
+            </Swipeable>
+            <DotIconsImage>
+              {monument.imagesUrls && monument.imagesUrls.map((_, index) => (
+                <IconEntyPO key={`image-${index}`} name='controller-record' size={10} color={index === showingImageIndex ? "#FF8616" : "#9f9f9f"} />
+              ))}
+            </DotIconsImage>
           </Carroussel>
+
         )}
       </CarrousselContainer>
       <TitleContainer>
