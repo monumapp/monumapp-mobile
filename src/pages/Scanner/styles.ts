@@ -14,3 +14,18 @@ export const Marker = styled.View`
   height: 200px;
   border: 2px solid #5eff00;
 `;
+
+export const BottomInstructionsContainer = styled.View`
+  position: absolute;
+  bottom: 50px;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BottomInstructionsText = styled.Text`
+  color: #ffffff;
+  font-family: 'Montserrat-Regular';
+  font-size: 15px;
+  margin-right: 10px;
+`;

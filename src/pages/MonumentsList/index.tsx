@@ -71,10 +71,8 @@ const MonumentsList: React.FC = () => {
     const searchName = monumentName.toLowerCase().split('');
     const filteredMonuments = monuments.filter((monument) => {
       const intersection = searchName.filter(value => monument.name.toLowerCase().includes(value));
-      console.log(intersection.length, searchName.length);
       return intersection.length === searchName.length && monument;
     });
-    console.log(filteredMonuments);
     setMonumentsSearch(filteredMonuments);
 
   }, [monuments]);

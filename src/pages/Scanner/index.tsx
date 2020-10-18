@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
+import { useNavigation, Link, useRoute } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Feather';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { TopInstructions, Marker } from './styles';
+import { TopInstructions, Marker, BottomInstructionsText, BottomInstructionsContainer } from './styles';
 import { Dimensions } from 'react-native';
 
 interface QRCodeReadEvent {
@@ -10,23 +11,41 @@ interface QRCodeReadEvent {
 
 const Scanner: React.FC = () => {
   const { navigate } = useNavigation();
-  const onSuccess = useCallback(
-    (event: QRCodeReadEvent) => {
-      navigate('Monument', { monumentId: event.data });
-    },
-    [navigate],
-  );
+  const [scanner, setScanner] = useState<QRCodeScanner | null>();
+
+  const onSuccess = useCallback((event: QRCodeReadEvent) => {
+    if (scanner) {
+      scanner._setScanning(true);
+    }
+    navigate('Monument', { monumentId: event.data });
+    setTimeout(() => {
+      if (scanner) {
+        scanner._setScanning(false);
+      }
+    }, 3000);
+  }, [navigate]);
+
 
   return (
     <QRCodeScanner
+      ref={(cam) => setScanner(cam)}
+      vibrate={false}
       cameraStyle={{ height: Dimensions.get('window').height }}
       customMarker={
         <>
           <TopInstructions>
-            Posicione o QR Code na moldura, ele será selecionado automáticamente
+            Posicione o QR Code na moldura e aguarde, o monumento será reconhecido automáticamente
           </TopInstructions>
           <Marker />
         </>
+      }
+      bottomContent={
+        <BottomInstructionsContainer>
+          <BottomInstructionsText onPress={() => navigate('MonumentsList')}>
+            Clique aqui para acessar a lista completa de monumentos
+          </BottomInstructionsText>
+          <Icon onPress={() => navigate('MonumentsList')} name='arrow-right' size={25} color='#ffffff' />
+        </BottomInstructionsContainer>
       }
       showMarker
       onRead={onSuccess}
