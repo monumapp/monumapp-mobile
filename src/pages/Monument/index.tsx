@@ -45,14 +45,18 @@ const Monument: React.FC = () => {
 
   useEffect(() => {
     async function load() {
-      if (paramMonument) {
-        setMonument(paramMonument);
-        setShowingImage(paramMonument.imagesUrls[0]);
-      } else {
-        const response = await api.get(`/monuments/${monumentId}`);
-        const monumentLoaded = response.data as Monument;
-        setMonument(monumentLoaded);
-        setShowingImage(monumentLoaded.imagesUrls[showingImageIndex]);
+      try {
+        if (paramMonument) {
+          setMonument(paramMonument);
+          setShowingImage(paramMonument.imagesUrls[0]);
+        } else {
+          const response = await api.get(`/monuments/${monumentId}`);
+          const monumentLoaded = response.data as Monument;
+          setMonument(monumentLoaded);
+          setShowingImage(monumentLoaded.imagesUrls[showingImageIndex]);
+        }
+      } catch{
+        navigate('NotFound');
       }
     }
 

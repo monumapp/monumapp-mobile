@@ -6,6 +6,9 @@ import Scanner from '../pages/Scanner';
 import Monument from '../pages/Monument';
 import MonumentsList from '../pages/MonumentsList';
 
+
+import NotFound from '../ExceptionHandler/Pages/NotFound';
+
 const { Navigator, Screen } = createStackNavigator();
 
 const Routes: React.FC = () => (
@@ -14,6 +17,7 @@ const Routes: React.FC = () => (
     <Screen name="MonumentsList" component={MonumentsList} />
     {/* <Screen name="Search" component={Search} /> */}
     <Screen name="Monument" component={Monument} />
+    <Screen name="NotFound" component={NotFound} />
   </Navigator>
 );
 

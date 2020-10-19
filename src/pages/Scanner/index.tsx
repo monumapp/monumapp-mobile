@@ -22,8 +22,14 @@ const Scanner: React.FC = () => {
       if (scanner) {
         scanner._setScanning(false);
       }
-    }, 3000);
+    }, 3000)
   }, [navigate]);
+
+  useEffect(() => {
+    if (scanner) {
+      scanner._setScanning(false)
+    }
+  }, [scanner])
 
 
   return (
