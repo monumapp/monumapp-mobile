@@ -36,6 +36,7 @@ const Scanner: React.FC = () => {
     <QRCodeScanner
       ref={(cam) => setScanner(cam)}
       vibrate={false}
+      reactivate={true}
       cameraStyle={{ height: Dimensions.get('window').height }}
       customMarker={
         <>
