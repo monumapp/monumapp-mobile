@@ -14,27 +14,27 @@ const Scanner: React.FC = () => {
   const [scanner, setScanner] = useState<QRCodeScanner | null>();
 
   const onSuccess = useCallback((event: QRCodeReadEvent) => {
-    if (scanner) {
-      scanner._setScanning(true);
-    }
+    // if (scanner) {
+    //   scanner._setScanning(true);
+    // }
     navigate('Monument', { monumentId: event.data });
-    setTimeout(() => {
-      if (scanner) {
-        scanner._setScanning(false);
-      }
-    }, 3000)
+    // setTimeout(() => {
+    //   if (scanner) {
+    //     scanner._setScanning(false);
+    //   }
+    // }, 3000)
   }, [navigate]);
 
-  useEffect(() => {
-    if (scanner) {
-      scanner._setScanning(false)
-    }
-  }, [scanner])
+  // useEffect(() => {
+  //   if (scanner) {
+  //     scanner._setScanning(false)
+  //   }
+  // }, [scanner])
 
 
   return (
     <QRCodeScanner
-      ref={(cam) => setScanner(cam)}
+      // ref={(cam) => setScanner(cam)}
       vibrate={false}
       reactivate={true}
       cameraStyle={{ height: Dimensions.get('window').height }}
