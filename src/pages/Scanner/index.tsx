@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { useNavigation, Link, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { TopInstructions, Marker, BottomInstructionsText, BottomInstructionsContainer } from './styles';
+import { TopInstructions, Marker, BottomInstructionsText, BottomInstructionsContainer, BottomButtom } from './styles';
 import { Dimensions } from 'react-native';
 
 interface QRCodeReadEvent {
@@ -48,10 +48,12 @@ const Scanner: React.FC = () => {
       }
       bottomContent={
         <BottomInstructionsContainer>
-          <BottomInstructionsText onPress={() => navigate('MonumentsList')}>
-            Clique aqui para acessar a lista completa de monumentos
-          </BottomInstructionsText>
-          <Icon onPress={() => navigate('MonumentsList')} name='arrow-right' size={25} color='#ffffff' />
+          <BottomButtom onPress={() => navigate('MonumentsList')}>
+            <BottomInstructionsText>
+              Clique aqui para acessar a lista completa de monumentos
+            </BottomInstructionsText>
+            <Icon name='arrow-right' size={25} color='#ffffff' />
+          </BottomButtom>
         </BottomInstructionsContainer>
       }
       showMarker

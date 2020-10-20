@@ -29,6 +29,7 @@ export const TabBarButtonText = styled.Text<TabBarButtonProps>`
 
 export const TabContent = styled.View`
   flex: 1;
+  margin-bottom: 40px;
 `;
 
 export const ContentSection = styled.View`

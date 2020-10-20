@@ -43,7 +43,8 @@ export const ListContainer = styled(FlatList)`
 `;
 
 export const ListItem = styled.TouchableOpacity`
-  height: 60px;
+  min-height: 60px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-top: 2px;
@@ -53,6 +54,7 @@ export const ListItem = styled.TouchableOpacity`
 `;
 
 export const ListText = styled.Text`
+  width: 80%;
   color: #5f5f5f;
   font-family: 'Montserrat-SemiBold';
   font-size: 15px;
