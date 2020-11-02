@@ -1,9 +1,14 @@
 import styled from 'styled-components/native';
-import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+
+export const TopContainer = styled.View`
+  position: absolute;
+  top: 50px;
+  right: 20px;
+`;
 
 export const TopInstructions = styled.Text`
   position: absolute;
-  top: 50px;
+  top: 80px;
   color: #ff8616;
   font-family: 'Montserrat-Regular';
   font-size: 15px;

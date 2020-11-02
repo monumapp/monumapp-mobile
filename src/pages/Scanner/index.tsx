@@ -1,9 +1,10 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
-import { useNavigation, Link, useRoute } from '@react-navigation/native';
+import React, { useCallback, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
+import MIIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { TopInstructions, Marker, BottomInstructionsText, BottomInstructionsContainer, BottomButtom } from './styles';
-import { Dimensions } from 'react-native';
+import { TopInstructions, Marker, BottomInstructionsText, BottomInstructionsContainer, BottomButtom, TopContainer } from './styles';
+import { Dimensions, View } from 'react-native';
 
 interface QRCodeReadEvent {
   data: string;
@@ -11,35 +12,22 @@ interface QRCodeReadEvent {
 
 const Scanner: React.FC = () => {
   const { navigate } = useNavigation();
-  const [scanner, setScanner] = useState<QRCodeScanner | null>();
 
   const onSuccess = useCallback((event: QRCodeReadEvent) => {
-    // if (scanner) {
-    //   scanner._setScanning(true);
-    // }
     navigate('Monument', { monumentId: event.data });
-    // setTimeout(() => {
-    //   if (scanner) {
-    //     scanner._setScanning(false);
-    //   }
-    // }, 3000)
   }, [navigate]);
-
-  // useEffect(() => {
-  //   if (scanner) {
-  //     scanner._setScanning(false)
-  //   }
-  // }, [scanner])
 
 
   return (
     <QRCodeScanner
-      // ref={(cam) => setScanner(cam)}
       vibrate={false}
       reactivate={true}
       cameraStyle={{ height: Dimensions.get('window').height }}
       customMarker={
         <>
+          <TopContainer>
+            <MIIcon name='comment-question' size={30} color='#ff8616' onPress={() => navigate('Questions')} />
+          </TopContainer>
           <TopInstructions>
             Posicione o QR Code na moldura e aguarde, o monumento será reconhecido automáticamente
           </TopInstructions>
