@@ -7,6 +7,7 @@ import { Container, TitleContainer, CarrousselContainer, TitleText, LocationCont
 import TabButton from './components/TabButton';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Dimensions } from 'react-native';
+import { formatPrice } from '../../utils/formatPrice';
 
 interface RouteParams {
   monumentId?: string;
@@ -134,14 +135,14 @@ const Monument: React.FC = () => {
             buttonContent: [
               { title: 'Descrição', info: monument.information.description },
               { title: 'Horário de Funcionamento', info: monument.information.openHours },
-              { title: 'Preço de entrada', info: monument.information.enterPrice.toFixed(2) }
+              { title: 'Preço de entrada', info: formatPrice(monument.information.enterPrice) }
             ]
           },
           {
             buttonName: 'História',
             buttonContent: [
               { title: 'Data de Fundação', info: monument.history.foundationDate },
-              { title: 'Origem', info: monument.history.origin },
+              // { title: 'Origem', info: monument.history.origin },
               { title: 'Fatos Históricos', info: monument.history.importantFacts }
             ]
           }
