@@ -12,9 +12,8 @@ const App = () => {
   return (
     <>
       <StatusBar
-        backgroundColor="transparent"
+        backgroundColor="#eaeaea"
         barStyle="dark-content"
-        translucent
       />
       <NavigationContainer>
         <SafeAreaView style={{ flex: 1 }}>

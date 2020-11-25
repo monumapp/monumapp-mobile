@@ -79,13 +79,13 @@ const Monument: React.FC = () => {
     <Container>
       <Icon style={{
         position: 'absolute',
-        top: 50,
+        top: 30,
         left: 20,
         zIndex: 1
       }}
         name='arrow-left'
         size={25}
-        color='#202020'
+        color='#FF8616'
         onPress={backToScannerHandle} />
       <CarrousselContainer>
         {monument.imagesUrls &&

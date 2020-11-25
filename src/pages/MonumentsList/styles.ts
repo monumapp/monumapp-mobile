@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  padding: 30px 0 0 0;
+  padding: 15px 0 0 0;
   background: transparent;
   flex-direction: row;
   align-items: flex-start;
