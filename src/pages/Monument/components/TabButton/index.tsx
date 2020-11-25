@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 
 import { Container, TabBar, TabBarButton, TabBarButtonText, TabContent, ContentSection, ContentSectionTitle, ContentSectionText, OpenHoursDays, OpenHoursTime } from './styles';
 import { View, Text } from 'react-native';
+import { formatOpenHoursTime, formatOpenHoursDays } from '../../../../utils/formatOpenHours';
 
 interface OpenHours {
   days: string[];
@@ -52,8 +53,8 @@ const TabButton: React.FC<TabButtonProps> = ({ data }) => {
                     : <View>
                       {section.info.map(openHour => {
                         return <View key={openHour.days.toString()}>
-                          <OpenHoursDays>{openHour.days.join(', ')}</OpenHoursDays>
-                          <OpenHoursTime>Das {openHour.open} às {openHour.close}</OpenHoursTime>
+                          <OpenHoursDays>{formatOpenHoursDays(openHour.days)}</OpenHoursDays>
+                          <OpenHoursTime>{formatOpenHoursTime(openHour.open, openHour.close)}</OpenHoursTime>
                         </View>
                       })}
                     </View>}

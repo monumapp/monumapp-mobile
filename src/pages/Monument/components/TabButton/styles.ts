@@ -49,7 +49,7 @@ export const ContentSectionText = styled.Text`
 `;
 
 export const OpenHoursDays = styled.Text`
-  font-family: 'Montserrat';
+  font-family: 'Montserrat-SemiBold';
   color: #5F5F5F;
   text-align: justify;
 `;
@@ -58,4 +58,5 @@ export const OpenHoursTime = styled.Text`
   font-family: 'Montserrat';
   color: #5F5F5F;
   text-align: justify;
+  margin-bottom: 5px;
 `;
